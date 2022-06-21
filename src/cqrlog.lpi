@@ -922,6 +922,10 @@
       <Debugging>
         <DebugInfoType Value="dsDwarf2Set"/>
       </Debugging>
+      <Options>
+        <PassLinkerOptions Value="True"/>
+        <LinkerOptions Value="-F/opt/local/libexec/qt5/lib/"/>
+      </Options>
     </Linking>
     <Other>
       <Verbosity>

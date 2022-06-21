@@ -113,8 +113,10 @@ const
 var
   {$IFNDEF MSWINDOWS}
     {$IFDEF DARWIN}
-    DLLSSLName: string = 'libssl.dylib';
-    DLLUtilName: string = 'libcrypto.dylib';
+    {DLLSSLName: string = 'libssl.dylib';
+    DLLUtilName: string = 'libcrypto.dylib';}
+    DLLSSLName: string = '/opt/local/lib/libssl.3.dylib';
+    DLLUtilName: string = '/opt/local/lib/libcrypto.3.dylib';
     {$ELSE}
      {$IFDEF OS2}
       {$IFDEF OS2GCC}
