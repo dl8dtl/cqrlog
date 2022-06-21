@@ -1,8 +1,30 @@
+# requires GNU make
+
+ifeq ($(OS),Windows_NT)
+    detected_OS := Windows
+else
+    detected_OS := $(shell sh -c 'uname 2>/dev/null || echo Unknown')
+endif
+
+# results: Windows, Linux, FreeBSD, Darwin, ...
+
+ifeq ($(detected_OS),Linux)
+toplevel = /usr
+else ifeq($(detected_OS),Darwin)
+# build an .app package
+toplevel = src/cqrlog.app/Contents
+else ifeq($(detected_OS),FreeBSD)
+toplevel = /usr/local
+else
+# Windows?
+toplevel = /usr #?
+endif
+
 CC=lazbuild
 ST=strip
-datadir  = $(DESTDIR)/usr/share/cqrlog
-bindir   = $(DESTDIR)/usr/bin
-sharedir = $(DESTDIR)/usr/share
+datadir  = $(DESTDIR)$(toplevel)/share/cqrlog
+bindir   = $(DESTDIR)$(toplevel)/bin
+sharedir = $(DESTDIR)$(toplevel)/share
 tmpdir   = /tmp
 
 cqrlog: src/cqrlog.lpi
@@ -18,7 +40,7 @@ clean:
 	rm -rf src/backup
 	rm -f -v src/richmemo/*.o src/richmemo/*.ppu src/richmemo/gtk2/*.ppu src/richmemo/gtk2/*.o
 	rm -f -v tools/adif_hash_generator tools/adif_hash_generator.lpi tools/adif_hash_generator.lps
-	
+
 install:
 	install -d -v         $(bindir)
 	install -d -v         $(datadir)
