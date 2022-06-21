@@ -3294,6 +3294,8 @@ begin
     Result := '/usr/bin/mysqld_safe';
   if FileExistsUTF8('/usr/sbin/mysqld') then //openSUSE
     Result := '/usr/sbin/mysqld';
+  if FileExistsUTF8('/opt/local/bin/mysqld') then // Macports
+    Result := '/opt/local/bin/mysqld';
   if Result = '' then  //don't know where mysqld is, so hopefully will be in  $PATH
     Result := 'mysqld'
 end;
