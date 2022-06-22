@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, LResources, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  ExtCtrls, Buttons, LazFileUtils;
+  ExtCtrls, Buttons, LazFileUtils, dData;
 
 type
 
@@ -62,6 +62,7 @@ const
 
 var
   frmDbSqlSel: TfrmDbSqlSel;
+  dmData : TdmData;
 
 implementation
 
@@ -318,7 +319,7 @@ begin
   xdg := FileSearch('xdg-open', C_PATH, True);
   if xdg <> '' then
   begin
-    pathToHelp := ExpandFileNameUTF8('..' + DirectorySeparator + 'share' + DirectorySeparator + 'cqrlog' + DirectorySeparator +
+    pathToHelp := ExpandFileNameUTF8(dmData.ShareDir +
                                      'help' + DirectorySeparator + 'firsttime.html');
 
     dmUtils.RunOnBackground(xdg + ' ' + pathToHelp);

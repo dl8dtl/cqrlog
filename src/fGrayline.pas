@@ -292,8 +292,7 @@ begin
    end;
   ImageFile := dmData.HomeDir+'images'+PathDelim+'grayline.bmp';
   if not FileExists(ImageFile) then
-    ImageFile := ExpandFileNameUTF8('..'+PathDelim+'share'+PathDelim+'cqrlog'+
-                 PathDelim+'images'+PathDelim+'grayline.bmp');
+    ImageFile := ExpandFileNameUTF8(dmData.ShareDir +'images'+PathDelim+'grayline.bmp');
   ob:=new(Pgrayline,init(ImageFile));
 
   //set debug rules for this form
