@@ -206,12 +206,16 @@ var
   c: integer;
 begin
   UsrHome := dmUtils.GetHomeDirectory;
+  {$IFDEF DARWIN}
+  Terminal := '/System/Applications/Utilities/Terminal.app/Contents/MacOS/Terminal';
+  {$ELSE}
   //try to find three well-known terminals
   Terminal := FileSearch('xterm', C_PATH, True);
   if Terminal = '' then
     Terminal := FileSearch('gnome-terminal', C_PATH, True);
   if Terminal = '' then
     Terminal := FileSearch('lxterminal', C_PATH, True);
+  {$ENDIF}
   if Terminal = '' then
     ShowMessage('CQRLOG did not find command-line terminal from your system!')
   else
