@@ -8,6 +8,7 @@ endif
 
 # results: Windows, Linux, FreeBSD, Darwin, ...
 
+
 ifeq ($(detected_OS),Linux)
 toplevel = /usr
 else ifeq($(detected_OS),Darwin)
@@ -40,6 +41,7 @@ clean:
 	rm -rf src/backup
 	rm -f -v src/richmemo/*.o src/richmemo/*.ppu src/richmemo/gtk2/*.ppu src/richmemo/gtk2/*.o
 	rm -f -v tools/adif_hash_generator tools/adif_hash_generator.lpi tools/adif_hash_generator.lps
+	rm -rf $(tmpdir)/.lazarus
 
 install:
 	install -d -v         $(bindir)
@@ -103,4 +105,3 @@ cqrlog_qt5: src/cqrlog.lpi
 cqrlog_qt5_debug: src/cqrlog.lpi
 	$(CC) --ws=qt5 --pcp=$(tmpdir)/.lazarus src/cqrlog.lpi
 	gzip tools/cqrlog.1 -c > tools/cqrlog.1.gz
-	
